@@ -1,11 +1,6 @@
 @import "tailwindcss";
 
-/*
-  Tailwind v4 only generates utility classes (bg-primary, text-text-secondary,
-  border-border, shadow-glow-md, etc.) for variables declared inside @theme.
-  This block is what actually creates every color/shadow/gradient utility
-  used across Header.tsx and HomeBanner.tsx.
-*/
+
 @theme {
   /* Backgrounds */
   --color-background: #FAFBFC;
@@ -73,12 +68,7 @@
   --max-screen-width: 1280px;
 }
 
-/*
-  Dark mode: plain CSS overrides of the SAME variable names.
-  No @theme here — these don't need to register new utilities,
-  they just reassign the values the utilities already point to.
-  Requires a `dark` class on <html> or <body> (e.g. via next-themes).
-*/
+
 .dark {
   --color-background: #0B0D11;
   --color-background-secondary: #10131A;
