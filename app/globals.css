@@ -1,26 +1,116 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Tailwind v4 only generates utility classes (bg-primary, text-text-secondary,
+  border-border, shadow-glow-md, etc.) for variables declared inside @theme.
+  This block is what actually creates every color/shadow/gradient utility
+  used across Header.tsx and HomeBanner.tsx.
+*/
+@theme {
+  /* Backgrounds */
+  --color-background: #FAFBFC;
+  --color-background-secondary: #F1F3F5;
+  --color-surface: #FFFFFF;
+  --color-surface-elevated: #FFFFFF;
+
+  /* Borders */
+  --color-border: #E1E4E8;
+  --color-border-subtle: #EDEFF1;
+
+  /* Text */
+  --color-foreground: #14171E;
+  --color-text-primary: #14171E;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #8B93A1;
+
+  /* Blue system */
+  --color-primary: #1E5799;
+  --color-primary-dark: #0F2D52;
+  --color-primary-light: #5B8FD1;
+  --color-primary-hover: #256BB8;
+  --color-primary-active: #163F73;
+  --color-primary-glow: rgba(59, 130, 217, 0.35);
+
+  /* Neutral ramp (used directly as gray-500 etc. if needed) */
+  --color-gray-50: #F5F6F7;
+  --color-gray-100: #E8EAED;
+  --color-gray-200: #D2D6DC;
+  --color-gray-300: #AEB4BF;
+  --color-gray-400: #838B99;
+  --color-gray-500: #5B6270;
+  --color-gray-600: #3D434F;
+  --color-gray-700: #2A2F38;
+  --color-gray-800: #1C2027;
+  --color-gray-900: #14171E;
+  --color-gray-950: #10131A;
+
+  /* Semantic */
+  --color-success: #2E9E6B;
+  --color-warning: #C98A2B;
+  --color-error: #C1443C;
+  --color-info: #3D7DBF;
+
+  /* Badges/tags */
+  --color-badge-bg: rgba(30, 87, 153, 0.08);
+  --color-badge-text: #1E5799;
+  --color-badge-border: rgba(30, 87, 153, 0.2);
+
+  /* Shadows -> shadow-glow-sm / shadow-glow-md / shadow-glow-button / shadow-card / shadow-card-elevated */
+  --shadow-glow-sm: 0 0 20px rgba(59, 130, 217, 0.18);
+  --shadow-glow-md: 0 0 40px rgba(59, 130, 217, 0.28);
+  --shadow-glow-button: 0 4px 20px rgba(30, 87, 153, 0.35);
+  --shadow-card: 0 1px 3px rgba(11, 13, 17, 0.06), 0 1px 2px rgba(11, 13, 17, 0.04);
+  --shadow-card-elevated: 0 8px 30px rgba(11, 13, 17, 0.1);
+
+  /* Gradients -> bg-gradient-graphite / bg-gradient-midnight / etc. */
+  --background-image-gradient-graphite: linear-gradient(180deg, #14171E 0%, #0B0D11 100%);
+  --background-image-gradient-midnight: linear-gradient(135deg, #0F2D52 0%, #0B0D11 100%);
+  --background-image-gradient-cobalt: linear-gradient(120deg, #163F73 0%, #2E6BB8 100%);
+  --background-image-gradient-frost: linear-gradient(180deg, #FFFFFF 0%, #F1F3F5 100%);
+  --background-image-gradient-mist: linear-gradient(180deg, #F5F6F7 0%, #E1E4E8 100%);
+  --background-image-gradient-hero-dark: linear-gradient(160deg, #0B0D11 0%, #0F2D52 55%, #163F73 100%);
+  --background-image-glow-radial: radial-gradient(circle at 50% 0%, rgba(59, 130, 217, 0.25) 0%, transparent 60%);
+  --max-screen-width: 1280px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/*
+  Dark mode: plain CSS overrides of the SAME variable names.
+  No @theme here — these don't need to register new utilities,
+  they just reassign the values the utilities already point to.
+  Requires a `dark` class on <html> or <body> (e.g. via next-themes).
+*/
+.dark {
+  --color-background: #0B0D11;
+  --color-background-secondary: #10131A;
+  --color-surface: #14171E;
+  --color-surface-elevated: #1C2027;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-border: #262B33;
+  --color-border-subtle: #1E222A;
+
+  --color-foreground: #F2F4F6;
+  --color-text-primary: #F2F4F6;
+  --color-text-secondary: #A7AEBB;
+  --color-text-muted: #6B7280;
+
+  --color-primary: #2E6BB8;
+  --color-primary-dark: #0A1E38;
+  --color-primary-light: #6FA0DB;
+  --color-primary-hover: #3B82D9;
+  --color-primary-active: #1E5799;
+  --color-primary-glow: rgba(59, 130, 217, 0.45);
+
+  --color-success: #3CB37D;
+  --color-warning: #D9A44D;
+  --color-error: #DB5A50;
+  --color-info: #5B8FD1;
+
+  --color-badge-bg: rgba(46, 107, 184, 0.15);
+  --color-badge-text: #6FA0DB;
+  --color-badge-border: rgba(46, 107, 184, 0.25);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
 }
