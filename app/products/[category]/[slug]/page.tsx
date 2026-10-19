@@ -21,7 +21,7 @@ export async function generateMetadata({
 }: Params): Promise<Metadata> {
   const { category, slug } = await params;
 
-  const product = allProducts.find(
+  const product = await allProducts.find(
     (p) => p.category === category && p.slug === slug
   );
   if (!product) return {};
